@@ -7,7 +7,7 @@ resource "aws_instance" "demo-server" {
   ami           = "ami-08a0d1e16fc3f61ea"
   instance_type = "t2.micro"
   key_name      = "terraformkey"
-  security_groups = ["demo-sg"]
+  vpc_security_group_ids = aws_security_group" "demo-sg
   subnet_id = aws_subnet.demo_pub-subnet.id
   tags = {
     Name = "project_web-server"
