@@ -1,0 +1,11 @@
+[jenkins-master]
+ 10.5.2.78
+ [jenkins-master:vars]
+ ansible_user=ubuntu
+ ansible_ssh_private_key_file=/opt/terraformkey.pem
+ [jbuild-slave]
+ 10.5.2.231
+ [jbuild-slave:vars]
+ ansible_user=ubuntu
+ ansible_ssh_private_key_file=/opt/terraformkey.pem
+

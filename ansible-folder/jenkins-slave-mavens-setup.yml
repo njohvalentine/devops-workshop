@@ -1,0 +1,27 @@
+---
+  - hosts: jbuild-slave
+    become: true
+    tasks:
+    - name: update ubuntu repo and cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    - name: install java
+      apt:
+        name: openjdk-11-jre
+        state: present
+    - name: Download file and force basic auth
+      get_url:
+        url: https://dlcdn.apache.org/maven/maven-3/3.9.7/binaries/apache-maven-3.9.7-bin.tar.gz
+        dest: /opt
+    - name: extract maven
+      unarchive:
+        src: /opt/apache-maven-3.9.7-bin.tar.gz
+        dest: /opt
+        remote_src: yes
+    - name: install maven
+      apt:
+        name: maven
+        state: present
+    
+    

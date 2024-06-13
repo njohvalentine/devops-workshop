@@ -73,27 +73,24 @@ resource "aws_route_table_association" "rt-asso2" {
 
 resource "aws_security_group" "demo-sg" {
   name        = "demo-sg"
-  description = "Allow TLS inbound traffic and all outbound traffic"
+  description = "Allow all inbound and outbound traffic (for testing only)"
   vpc_id      = aws_vpc.demo-vpc.id
 
   tags = {
     Name = "demo-sg"
   }
+
   ingress {
-    description = "allow ssh"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"  # Allow all protocols
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "tcp"
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"  # Allow all protocols
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-
-
